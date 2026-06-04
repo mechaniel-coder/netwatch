@@ -1,0 +1,24 @@
+# Binaries
+server/netwatch-server
+agent/netwatch-agent
+*.exe
+
+# Environment
+.env
+
+# Go
+server/vendor/
+agent/vendor/
+*.test
+
+# Node
+dashboard/node_modules/
+dashboard/dist/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Docker
+*.log

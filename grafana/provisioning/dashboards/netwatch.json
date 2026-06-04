@@ -1,0 +1,103 @@
+{
+  "id": null,
+  "uid": "netwatch-overview",
+  "title": "NetWatch — Server Overview",
+  "tags": ["netwatch"],
+  "timezone": "browser",
+  "schemaVersion": 38,
+  "version": 1,
+  "refresh": "15s",
+  "time": { "from": "now-1h", "to": "now" },
+  "panels": [
+    {
+      "id": 1,
+      "title": "Server Uptime",
+      "type": "stat",
+      "gridPos": { "x": 0, "y": 0, "w": 6, "h": 4 },
+      "options": { "reduceOptions": { "calcs": ["lastNotNull"] }, "unit": "s", "colorMode": "value", "graphMode": "none" },
+      "targets": [
+        {
+          "datasource": "Prometheus",
+          "expr": "netwatch_uptime_seconds",
+          "legendFormat": "Uptime"
+        }
+      ],
+      "fieldConfig": { "defaults": { "unit": "s" }, "overrides": [] }
+    },
+    {
+      "id": 2,
+      "title": "Active WebSocket Connections",
+      "type": "stat",
+      "gridPos": { "x": 6, "y": 0, "w": 6, "h": 4 },
+      "options": { "reduceOptions": { "calcs": ["lastNotNull"] }, "colorMode": "value", "graphMode": "none" },
+      "targets": [
+        {
+          "datasource": "Prometheus",
+          "expr": "netwatch_websocket_connections",
+          "legendFormat": "WS Connections"
+        }
+      ],
+      "fieldConfig": { "defaults": { "unit": "short" }, "overrides": [] }
+    },
+    {
+      "id": 3,
+      "title": "Total Agent Registrations",
+      "type": "stat",
+      "gridPos": { "x": 12, "y": 0, "w": 6, "h": 4 },
+      "options": { "reduceOptions": { "calcs": ["lastNotNull"] }, "colorMode": "value", "graphMode": "none" },
+      "targets": [
+        {
+          "datasource": "Prometheus",
+          "expr": "netwatch_agent_registrations_total",
+          "legendFormat": "Registrations"
+        }
+      ],
+      "fieldConfig": { "defaults": { "unit": "short" }, "overrides": [] }
+    },
+    {
+      "id": 4,
+      "title": "Total Alerts Fired",
+      "type": "stat",
+      "gridPos": { "x": 18, "y": 0, "w": 6, "h": 4 },
+      "options": { "reduceOptions": { "calcs": ["lastNotNull"] }, "colorMode": "value", "graphMode": "none" },
+      "targets": [
+        {
+          "datasource": "Prometheus",
+          "expr": "netwatch_alerts_fired_total",
+          "legendFormat": "Alerts"
+        }
+      ],
+      "fieldConfig": { "defaults": { "unit": "short" }, "overrides": [] }
+    },
+    {
+      "id": 5,
+      "title": "Metric Ingest Rate (per minute)",
+      "type": "timeseries",
+      "gridPos": { "x": 0, "y": 4, "w": 12, "h": 8 },
+      "options": { "tooltip": { "mode": "single" } },
+      "targets": [
+        {
+          "datasource": "Prometheus",
+          "expr": "rate(netwatch_metrics_ingested_total[1m]) * 60",
+          "legendFormat": "Ingests / min"
+        }
+      ],
+      "fieldConfig": { "defaults": { "unit": "short", "custom": { "lineWidth": 2 } }, "overrides": [] }
+    },
+    {
+      "id": 6,
+      "title": "Active WebSocket Connections Over Time",
+      "type": "timeseries",
+      "gridPos": { "x": 12, "y": 4, "w": 12, "h": 8 },
+      "options": { "tooltip": { "mode": "single" } },
+      "targets": [
+        {
+          "datasource": "Prometheus",
+          "expr": "netwatch_websocket_connections",
+          "legendFormat": "Connections"
+        }
+      ],
+      "fieldConfig": { "defaults": { "unit": "short", "custom": { "lineWidth": 2 } }, "overrides": [] }
+    }
+  ]
+}

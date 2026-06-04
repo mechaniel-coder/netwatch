@@ -1,0 +1,12 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    monitor: netwatch
+
+scrape_configs:
+  - job_name: netwatch-server
+    static_configs:
+      - targets: ["server:8080"]
+    metrics_path: /metrics
+    scrape_interval: 15s
